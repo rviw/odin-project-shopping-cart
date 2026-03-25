@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function ProductCard({ product }) {
   return (
     <article className="product-card">
@@ -10,5 +12,14 @@ function ProductCard({ product }) {
     </article>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProductCard;
