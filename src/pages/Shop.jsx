@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard.jsx";
 
 function Shop() {
   const [products, setProducts] = useState([]);
@@ -61,11 +62,11 @@ function Shop() {
       <h1>Shop</h1>
       <p>Products loaded: {products.length}</p>
 
-      <ul>
+      <div className="product-grid">
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

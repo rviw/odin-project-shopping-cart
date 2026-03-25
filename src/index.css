@@ -6,8 +6,6 @@
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -51,23 +49,19 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  font-size: clamp(2rem, 1.6rem + 1.8vw, 3.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 1.5rem 0 1rem;
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+  font-size: 1.1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
+
 p {
   margin: 0;
 }
@@ -82,7 +76,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -107,4 +101,44 @@ a {
 main {
   flex: 1;
   padding: 2rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.product-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.75rem;
+  padding: 2rem 1.5rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.product-image {
+  display: block;
+  width: min(72%, 10rem);
+  max-width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-price {
+  color: var(--text-h);
+  font-weight: 600;
+  margin-top: auto;
+  padding-top: 1rem;
 }
