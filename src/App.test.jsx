@@ -1,13 +1,17 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { createMemoryRouter, RouterProvider } from "react-router";
+import routes from "./routes.jsx";
 
-describe("App", () => {
-  it("renders the project heading", () => {
-    render(<App />);
+describe("App layout", () => {
+  it("renders the home page inside the app layout", () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
 
-    expect(
-      screen.getByRole("heading", { name: "Shopping Cart" }),
-    ).toBeInTheDocument();
+    render(<RouterProvider router={router} />);
+
+    expect(screen.getByRole("main")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Home" })).toBeInTheDocument();
   });
 });
