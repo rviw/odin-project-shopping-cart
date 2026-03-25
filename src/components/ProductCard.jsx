@@ -56,6 +56,10 @@ function ProductCard({ product }) {
             +
           </button>
         </div>
+
+        <button type="button" className="add-to-cart-button">
+          Add to cart
+        </button>
       </div>
     </article>
   );

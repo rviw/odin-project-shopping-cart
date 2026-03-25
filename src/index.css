@@ -177,3 +177,14 @@ main {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.add-to-cart-button {
+  margin-top: 0.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
