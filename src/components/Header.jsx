@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router";
+import PropTypes from "prop-types";
 
-function Header() {
+function Header({ cartItemsCount }) {
   return (
     <header className="header">
       <Link to="/" className="brand">
@@ -17,11 +18,15 @@ function Header() {
         </NavLink>
 
         <NavLink to="/cart" end>
-          Cart
+          Cart ({cartItemsCount})
         </NavLink>
       </nav>
     </header>
   );
 }
+
+Header.propTypes = {
+  cartItemsCount: PropTypes.number.isRequired,
+};
 
 export default Header;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function ProductCard({ product }) {
+function ProductCard({ product, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
 
   function handleDecrease() {
@@ -21,6 +21,10 @@ function ProductCard({ product }) {
     }
 
     setQuantity(Math.max(1, nextQuantity));
+  }
+
+  function handleAddToCart() {
+    onAddToCart(product, quantity);
   }
 
   return (
@@ -57,7 +61,11 @@ function ProductCard({ product }) {
           </button>
         </div>
 
-        <button type="button" className="add-to-cart-button">
+        <button
+          type="button"
+          className="add-to-cart-button"
+          onClick={handleAddToCart}
+        >
           Add to cart
         </button>
       </div>
@@ -72,6 +80,7 @@ ProductCard.propTypes = {
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

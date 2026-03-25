@@ -1,7 +1,10 @@
+import { useOutletContext } from "react-router";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard.jsx";
 
 function Shop() {
+  const { addToCart } = useOutletContext();
+
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,7 +67,11 @@ function Shop() {
 
       <div className="product-grid">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={addToCart}
+          />
         ))}
       </div>
     </section>
