@@ -142,3 +142,38 @@ main {
   margin-top: auto;
   padding-top: 1rem;
 }
+
+.quantity-controls {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.quantity-controls button,
+.quantity-controls input {
+  height: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.quantity-controls button {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.quantity-controls input {
+  width: 100%;
+  padding: 0 0.75rem;
+  text-align: center;
+  box-sizing: border-box;
+  appearance: textfield;
+}
+
+.quantity-controls input::-webkit-outer-spin-button,
+.quantity-controls input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
