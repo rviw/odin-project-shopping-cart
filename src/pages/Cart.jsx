@@ -2,7 +2,12 @@ import { useContext } from "react";
 import ShopContext from "../contexts/ShopContext.jsx";
 
 function Cart() {
-  const { cartItems } = useContext(ShopContext);
+  const {
+    cartItems,
+    increaseCartItemQuantity,
+    decreaseCartItemQuantity,
+    removeFromCart,
+  } = useContext(ShopContext);
 
   if (cartItems.length === 0) {
     return (
@@ -32,9 +37,40 @@ function Cart() {
             />
 
             <div className="cart-item-content">
-              <h2>{item.title}</h2>
-              <p>Quantity: {item.quantity}</p>
-              <p className="cart-item-price">${item.price.toFixed(2)}</p>
+              <div className="cart-item-header">
+                <div className="cart-item-info">
+                  <h2>{item.title}</h2>
+                  <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                </div>
+
+                <button
+                  type="button"
+                  className="remove-button"
+                  onClick={() => removeFromCart(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
+
+              <div className="quantity-controls cart-item-quantity-controls">
+                <button
+                  type="button"
+                  onClick={() => decreaseCartItemQuantity(item.id)}
+                  aria-label="Decrease quantity"
+                >
+                  -
+                </button>
+
+                <input type="text" value={item.quantity} readOnly aria-label="Quantity" />
+
+                <button
+                  type="button"
+                  onClick={() => increaseCartItemQuantity(item.id)}
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </article>
         ))}

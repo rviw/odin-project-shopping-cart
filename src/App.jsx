@@ -22,8 +22,42 @@ export default function App() {
     });
   }
 
+  function increaseCartItemQuantity(productId) {
+    setCartItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    );
+  }
+
+  function decreaseCartItemQuantity(productId) {
+    setCartItems((currentItems) =>
+      currentItems
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
+    );
+  }
+
+  function removeFromCart(productId) {
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.id !== productId),
+    );
+  }
+
   return (
-    <ShopContext.Provider value={{ cartItems, addToCart }}>
+    <ShopContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        increaseCartItemQuantity,
+        decreaseCartItemQuantity,
+        removeFromCart,
+      }}
+    >
       <Header />
       <main>
         <Outlet />
