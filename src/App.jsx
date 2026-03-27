@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
 import Header from "./components/Header";
+import ShopContext from "./contexts/ShopContext.jsx";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -21,17 +22,12 @@ export default function App() {
     });
   }
 
-  const cartItemsCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0,
-  );
-
   return (
-    <>
-      <Header cartItemsCount={cartItemsCount} />
+    <ShopContext.Provider value={{ cartItems, addToCart }}>
+      <Header />
       <main>
-        <Outlet context={{ addToCart }} />
+        <Outlet />
       </main>
-    </>
+    </ShopContext.Provider>
   );
 }

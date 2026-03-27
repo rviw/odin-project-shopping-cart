@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ShopContext from "../contexts/ShopContext.jsx";
 import PropTypes from "prop-types";
 
-function ProductCard({ product, onAddToCart }) {
+function ProductCard({ product }) {
+  const { addToCart } = useContext(ShopContext);
   const [quantity, setQuantity] = useState(1);
 
   function handleDecrease() {
@@ -24,7 +26,7 @@ function ProductCard({ product, onAddToCart }) {
   }
 
   function handleAddToCart() {
-    onAddToCart(product, quantity);
+    addToCart(product, quantity);
   }
 
   return (
@@ -66,7 +68,7 @@ function ProductCard({ product, onAddToCart }) {
           className="add-to-cart-button"
           onClick={handleAddToCart}
         >
-          Add to cart
+          Add To Cart
         </button>
       </div>
     </article>
@@ -80,7 +82,6 @@ ProductCard.propTypes = {
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
-  onAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

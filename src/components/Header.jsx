@@ -1,7 +1,15 @@
+import { useContext } from "react";
+import ShopContext from "../contexts/ShopContext.jsx";
 import { Link, NavLink } from "react-router";
-import PropTypes from "prop-types";
 
-function Header({ cartItemsCount }) {
+function Header() {
+  const { cartItems } = useContext(ShopContext);
+
+  const cartItemsCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
   return (
     <header className="header">
       <Link to="/" className="brand">
@@ -24,9 +32,5 @@ function Header({ cartItemsCount }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  cartItemsCount: PropTypes.number.isRequired,
-};
 
 export default Header;
