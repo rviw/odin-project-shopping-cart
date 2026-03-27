@@ -188,3 +188,37 @@ main {
   font-weight: 600;
   cursor: pointer;
 }
+
+.cart-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.cart-item-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.cart-item-content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.cart-item-price {
+  color: var(--text-h);
+  font-weight: 600;
+}
