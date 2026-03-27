@@ -4,29 +4,32 @@ import PropTypes from "prop-types";
 
 function ProductCard({ product }) {
   const { addToCart } = useContext(ShopContext);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState("1");
 
   function handleDecrease() {
-    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
+    setQuantity((currentQuantity) =>
+      String(Math.max(1, (Number.parseInt(currentQuantity, 10) || 1) - 1)),
+    );
   }
 
   function handleIncrease() {
-    setQuantity((currentQuantity) => currentQuantity + 1);
+    setQuantity((currentQuantity) =>
+      String((Number.parseInt(currentQuantity, 10) || 1) + 1),
+    );
   }
 
   function handleChange(event) {
-    const nextQuantity = Number(event.target.value);
+    const { value } = event.target;
 
-    if (Number.isNaN(nextQuantity)) {
-      setQuantity(1);
-      return;
+    if (value === "" || /^[1-9]\d*$/.test(value)) {
+      setQuantity(value);
     }
-
-    setQuantity(Math.max(1, nextQuantity));
   }
 
   function handleAddToCart() {
-    addToCart(product, quantity);
+    const nextQuantity = Number.parseInt(quantity, 10) || 1;
+
+    addToCart(product, nextQuantity);
   }
 
   return (
@@ -47,8 +50,8 @@ function ProductCard({ product }) {
           </button>
 
           <input
-            type="number"
-            min="1"
+            type="text"
+            inputMode="numeric"
             value={quantity}
             onChange={handleChange}
             aria-label="Quantity"
